@@ -1,0 +1,8 @@
+/node_modules
+/vendor/*
+/tests/report/*
+.env
+.vscode
+composer.lock
+composer.bat
+composer.phar
