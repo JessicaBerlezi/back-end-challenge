@@ -1,0 +1,65 @@
+<?php
+
+define("NAO_DEFINIDO", " não definido.");
+define("FORMATO_INVALIDO", "está definido com formato inválido.");
+
+
+class ConstantesMessageException {
+    const BAD_REQUEST = 400;
+    
+    /**
+     * Campos obrigatórios não preenchidos
+     */
+    public static function getMessageExceptionNullParamValorCotacao()
+    {
+        return "Parâmetro do valor da cotação ".NAO_DEFINIDO;
+    }    
+    public static function  getMessageExceptionNullParamValorQuantidade(){
+        return "Parâmetro quantidade " .NAO_DEFINIDO;
+    }
+    public static function  getMessageExceptionParseParamValorQuantidade(){
+        return "Parâmetro quantidade " .FORMATO_INVALIDO;
+    }
+    public static function getMessageExceptionNullParamSigla(){
+        return "Parâmetro de sigla da moeda ".NAO_DEFINIDO;
+    }
+    public static function getMessageExceptionNullParamData(){
+        return "Parâmetro de data para consulta ".NAO_DEFINIDO;
+    }
+   
+    
+    /**
+     * Padronização de formato de parâmetro
+     */
+    public static function getMessageExceptionParseParamValorCotacao(){
+        return "Parâmetro do valor da cotação".FORMATO_INVALIDO;
+    } 
+    public static function getMessageExceptionRNDataFormatoInvalido(){
+        return "Parâmetro data " .FORMATO_INVALIDO. ": Utilize MM/dd/yyyy";
+    }
+    
+    
+    /**
+     * Exceptions por validação/regra de negócio
+     /
+      * 
+    public static function getMessageExceptionRNSiglaMoeda(){
+        return "Tipo de moeda não validada: Utilize EUR, BRL ou USD.";
+    }*/
+    public static function getMessageExceptionRNSiglaMoedaInvalida(){
+        return "Tipo de moeda não validada: Utilize EUR, BRL ou USD.";
+    }
+    public static function getMessageExceptionRNParamsSiglaMoedaIguais(){
+        return "Parâmetros de sigla moeda origem e destino estão iguais.";
+    }
+    
+    
+    /**
+     * EXCEPTIONS
+     * Error dos métodos da camada de negócio
+     */
+    public static function getMessageExceptionErrorCalcularPorCotacao(){
+        return "Um erro ocorreu ao buscar a cotação, verifique o formato dos parâmetros e tente novamente.";
+    }
+}
+?>
