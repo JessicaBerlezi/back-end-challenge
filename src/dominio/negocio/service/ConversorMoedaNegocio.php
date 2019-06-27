@@ -41,33 +41,33 @@ class ConversorMoedaNegocio implements iConversorMoedaNegocio
     public function calcularMoedaPorCotacaoOnline($de, $para, $vlrQuantidade, $data)
     {
         if(is_null($de) or is_null($para) or empty($de) or empty($para)){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionNullParamSigla());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionNullParamSigla(), \ConstantesMessageException::FOTBIDDEN);
         }
         
         if(is_null($vlrQuantidade) || empty($vlrQuantidade)){
             $vlrQuantidade = 1;
         }else if(!is_numeric($vlrQuantidade)){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade(), 403);
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade(), \ConstantesMessageException::FOTBIDDEN);
         }
         if($vlrQuantidade < 1){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade(), \ConstantesMessageException::FOTBIDDEN);
         }
         
         if(is_null($data) || $data == ""){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionNullParamData());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionNullParamData(), \ConstantesMessageException::FOTBIDDEN);
         }else{
             $data = str_replace("/", "-", $data);
         }
         if(strcasecmp($de, $para) == 0){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionRNParamsSiglaMoedaIguais());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionRNParamsSiglaMoedaIguais(), \ConstantesMessageException::FOTBIDDEN);
         }else{
             //Moedas possíveis segundo as instruções para a construção do código
             $lMoedasPossiveis = array("EUR", "BRL", "USD"); 
             if (!in_array($de, $lMoedasPossiveis)){
-                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionRNSiglaMoedaInvalida());
+                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionRNSiglaMoedaInvalida(), \ConstantesMessageException::FOTBIDDEN);
             }
             if (!in_array($para, $lMoedasPossiveis)){
-                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionRNSiglaMoedaInvalida());
+                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionRNSiglaMoedaInvalida(), \ConstantesMessageException::FOTBIDDEN);
             }
         }
        
@@ -79,18 +79,18 @@ class ConversorMoedaNegocio implements iConversorMoedaNegocio
         if(strcasecmp($para, "BRL") == 0){ 
             $vlrCotacao =  $integracao->pesquisarValorCotacaoOnline($de, $data);
             if(empty($vlrCotacao)){
-                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao());
+                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao(), \ConstantesMessageException::BAD_REQUEST);
             }
             if(is_numeric($vlrCotacao) AND is_numeric($vlrQuantidade)){
                 $retorno = $vlrQuantidade * $vlrCotacao;
                 $vlrConvertido = number_format($retorno, 4, '.', '');
             }else{
-                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao());
+                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao(), \ConstantesMessageException::BAD_REQUEST);
             }  
         }else{
             $vlrCotacao =  $integracao->pesquisarValorCotacaoOnline($para, $data);
             if(empty($vlrCotacao)){
-                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao());
+                throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao(), \ConstantesMessageException::BAD_REQUEST);
             }
             $vlrConvertido = $this->calcularMoedaPorCotacao($vlrCotacao, $vlrQuantidade);
         }

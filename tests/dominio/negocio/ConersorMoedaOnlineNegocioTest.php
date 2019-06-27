@@ -62,7 +62,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
-        
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("BRL", "USD", -1 , "06-25-2019"));
     }
@@ -71,6 +71,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionNullParamSigla(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamSigla());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("BRL", null, 1 , "06-25-2019"));
@@ -78,6 +79,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionNullParamSigla2(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamSigla());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline(null, "BRL", 1 , "06-25-2019"));
@@ -85,6 +87,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionNullParamSigla3(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamSigla());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline(null, null, 1 , "06-25-2019"));
@@ -92,6 +95,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionEmptyParamSigla(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamSigla());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("", "", 1 , "06-25-2019"));
@@ -101,6 +105,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionNullParamData(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamData());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("BRL", "USD", 1 , null));
@@ -108,6 +113,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionEmptyParamData(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamData());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("BRL", "USD", 1 , ""));
@@ -119,6 +125,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionRNSiglaMoedaIguais(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionRNParamsSiglaMoedaIguais());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("USD", "USD", 1 , "06-25-2019"));
@@ -127,6 +134,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionRNSiglaMoedaInvalida(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionRNSiglaMoedaInvalida());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("DOLAR", "REAL", 1 , "06-25-2019"));
@@ -135,6 +143,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionRNSiglaMoedaInvalida2(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionRNSiglaMoedaInvalida());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("BRL", "DOLAR", 1 , "06-25-2019"));
@@ -143,6 +152,7 @@ class ConersorMoedaOnlineNegocioTest extends TestCase
     public function testCalcularMoedaPorCotacaoOnlineExceptionParseParamValorQuantidade(){
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacaoOnline("BRL", "USD", "STRING NO LUGAR DE DOUBLE" , "06-25-2019"));

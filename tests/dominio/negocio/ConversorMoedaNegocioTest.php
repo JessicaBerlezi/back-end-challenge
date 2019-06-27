@@ -47,6 +47,7 @@ class ConversorMoedaNegocioTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamValorCotacao());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
 
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacao(null, 2));
@@ -55,6 +56,7 @@ class ConversorMoedaNegocioTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionNullParamValorCotacao());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacao("", 2));
@@ -64,6 +66,7 @@ class ConversorMoedaNegocioTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionParseParamValorCotacao());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacao("teste string no lugar de double", 2));
@@ -73,6 +76,7 @@ class ConversorMoedaNegocioTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
+        $this->expectExceptionCode(\ConstantesMessageException::FOTBIDDEN);
         
         $this->conversorMoedaNegocio = new ConversorMoedaNegocio();
         $this->assertEquals(InvalidArgumentException::class, $this->conversorMoedaNegocio->calcularMoedaPorCotacao(3.85, "teste string no lugar de double"));
