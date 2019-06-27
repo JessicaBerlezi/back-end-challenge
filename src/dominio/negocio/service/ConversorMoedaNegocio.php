@@ -14,27 +14,27 @@ class ConversorMoedaNegocio implements iConversorMoedaNegocio
     
     public function calcularMoedaPorCotacao($vlrCotacao, $vlrQuantidade){
         if(is_null($vlrCotacao) or $vlrCotacao == ""){
-            throw new \InvalidArgumentException(ConstantesMessageException::getMessageExceptionNullParamValorCotacao());
+            throw new \InvalidArgumentException(ConstantesMessageException::getMessageExceptionNullParamValorCotacao(),\ConstantesMessageException::FOTBIDDEN);
         }
         if(!is_numeric($vlrCotacao)){
             $vlrCotacao = str_replace(",", ".", $vlrCotacao);
             if(!is_numeric($vlrCotacao)){
-                throw new \InvalidArgumentException(ConstantesMessageException::getMessageExceptionParseParamValorCotacao());
+                throw new \InvalidArgumentException(ConstantesMessageException::getMessageExceptionParseParamValorCotacao(), \ConstantesMessageException::FOTBIDDEN);
             }
         }
         if(is_null($vlrQuantidade) OR empty($vlrQuantidade)){
             $vlrQuantidade = 1;
         }else if(!is_numeric($vlrQuantidade)){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade(), \ConstantesMessageException::FOTBIDDEN);
         }
         if($vlrQuantidade < 1){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade(), \ConstantesMessageException::FOTBIDDEN);
         }
         try {
             $retorno = $vlrQuantidade / $vlrCotacao;
             return number_format($retorno, 4, '.', '');
         } catch (\Exception $e) {
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionErrorCalcularPorCotacao(), \ConstantesMessageException::BAD_REQUEST);
         }
     }
     
@@ -47,7 +47,7 @@ class ConversorMoedaNegocio implements iConversorMoedaNegocio
         if(is_null($vlrQuantidade) || empty($vlrQuantidade)){
             $vlrQuantidade = 1;
         }else if(!is_numeric($vlrQuantidade)){
-            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());
+            throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade(), 403);
         }
         if($vlrQuantidade < 1){
             throw new \InvalidArgumentException(\ConstantesMessageException::getMessageExceptionParseParamValorQuantidade());

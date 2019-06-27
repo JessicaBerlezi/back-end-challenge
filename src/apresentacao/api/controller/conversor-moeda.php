@@ -10,10 +10,10 @@ header("Content-Type: application/json; charset=UTF-8");
 
 try{
     
-    $http_code = 400; //Retorna apenas no catch - Error padrão
+    $http_code = \ConstantesMessageException::BAD_REQUEST; //Retorna apenas no catch - Error padrão
     
     if ($_SERVER["REQUEST_METHOD"] <> "GET") {
-        $http_code = (403); //forbidden
+        $http_code = (\ConstantesMessageException::NOT_ALLOWED);
         throw new Exception("Método ". $_SERVER["REQUEST_METHOD"] ." não suportado.");
     }elseif ($_GET){
         //Validação dos parâmetros

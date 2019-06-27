@@ -5,7 +5,10 @@ define("FORMATO_INVALIDO", "está definido com formato inválido.");
 
 
 class ConstantesMessageException {
+    const OK = 200;
     const BAD_REQUEST = 400;
+    const FOTBIDDEN = 403;
+    const NOT_ALLOWED = 405;
     
     /**
      * Campos obrigatórios não preenchidos

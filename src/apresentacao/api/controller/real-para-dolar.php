@@ -9,10 +9,10 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 try{
-    $http_code = 400; //Retorna apenas no catch - Error padrão
+    $http_code = \ConstantesMessageException::BAD_REQUEST;; //Retorna apenas no catch - Error padrão
     
     if ($_SERVER["REQUEST_METHOD"] <> "GET") {
-        $http_code = (403); //forbidden
+        $http_code = (\ConstantesMessageException::NOT_ALLOWED);
         throw new \Exception("Método ". $_SERVER["REQUEST_METHOD"] ." não suportado.");
     }elseif ($_GET){
         
@@ -33,7 +33,7 @@ try{
         $dto = new ConversaoMoedaModel("USD", $vlrConvertido);
         
         //Retorno da api
-        http_response_code(200);
+        http_response_code(\ConstantesMessageException::OK);
         echo json_encode($dto, JSON_PRETTY_PRINT);
     }else{
         throw new \InvalidArgumentException("Parâmetros requeridos não informados.");
